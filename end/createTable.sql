@@ -14,6 +14,8 @@ CREATE TABLE prize(
     id           INT          UNIQUE KEY AUTO_INCREMENT NOT NULL    COMMENT '标识',
     label        CHAR(10)     NOT NULL               COMMENT '奖品label',
     description  CHAR(200)    NOT NULL               COMMENT '奖品描述信息',
+    icon         char(50)     not null               COMMENT '奖品图片',
+    subDesc      char(200)     not null               COMMENT '奖品简单描述',
     PRIMARY KEY (id)
 ) COMMENT= '奖品';
 

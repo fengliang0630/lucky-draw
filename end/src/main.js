@@ -1,7 +1,8 @@
 var express = require('express');
 var { createPool } = require('./service/dbService');
 var { port } = require('./config/config');
-var { getPrizeId, getPrizeList, addPrizes, setPrizeSetting, addPrizeSpecialSetting, deletePrizeSpecialSetting } = require('./service/tool');
+var { getPrizeId, getPrizeList, addPrizes, setPrizeSetting, getPrizeHistory, getPrizeHistoryCount,
+    addPrizeSpecialSetting, deletePrizeSpecialSetting } = require('./service/tool');
 
 var app = express();
 app.use(express.json())
@@ -10,9 +11,24 @@ var pool = createPool();
 
 /** 获取中将号码 */
 app.post('/getPrizeId', function(req, res, next) {
-    const {telephone, wx} = req.body;
-    getPrizeId(pool, {telephone, wx}, () => {
-        res.send({});
+    const {params} = req.body;
+    getPrizeId(pool, params, (prizeId, randomId) => {
+        res.send({ prizeId, randomId });
+    });
+});
+
+/** 获取中将历史记录 */
+app.post('/getPrizeHistoryCount', function(req, res, next) {
+    const {params} = req.body;
+    getPrizeHistoryCount(pool, {telephone: params.telephone}, (count) => {
+        res.send({ count });
+    });
+});
+
+/** 获取中将历史记录 */
+app.post('/getPrizeHistory', function(req, res, next) {
+    getPrizeHistory(pool, {}, (prizeHistoryList) => {
+        res.send({ prizeHistoryList });
     });
 });
 
@@ -32,7 +48,6 @@ app.post('/addPrizeSpecialSetting', function(req, res, next) {
         res.send({});
     });
 });
-
 
 /** 抽奖初始化设置 */
 app.post('/setPrizeSetting', function(req, res, next) {

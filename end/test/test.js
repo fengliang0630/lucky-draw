@@ -13,14 +13,7 @@ var pool = createPool();
 app.post('/addPrizeSpecialSetting', function(req, res, next) {
     // const {params} = req.body;
     const params = [
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 1},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 2},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 3},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 4},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 5},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 6},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 7},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 8}
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 1}
     ];
     addPrizeSpecialSetting(pool, params, (_res) => {
         res.send({});
@@ -30,7 +23,7 @@ app.post('/addPrizeSpecialSetting', function(req, res, next) {
 
 /** 抽奖初始化设置 */
 app.post('/setPrizeSetting', function(req, res, next) {
-    const _params = { '1': 8, '2': 18, '3': 28, '4': 128, '5': 128, '6': 48, '7': 14, '8': 14};
+    const _params = { '1': 8, '2': 18, '3': 14, '4': 28, '5': 128, '6': 14, '7': 128, '8': 48};
     setPrizeSetting(pool, _params, (_res) => {
         res.send({});
     });

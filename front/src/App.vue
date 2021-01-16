@@ -1,12 +1,49 @@
 <template>
   <div id="app">
     <router-view/>
+    <van-action-sheet v-model="show" title="输入信息" class="asd">
+      <van-field v-model="telphone" required type="tel" placeholder="请输入用户名" />
+      <van-field v-model="wx" placeholder="请输入用户名" />
+      <van-button @click="login" type="info">确认</van-button>
+    </van-action-sheet>
   </div>
 </template>
 
 <script>
+import { ActionSheet, Field, Button } from 'vant';
+
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      show: false,
+      telphone: '',
+      wx: ''
+    }
+  },
+  mounted() {
+    this.$bus.on('show.login.msg', this.showlogin)
+  },
+  methods: {
+    showlogin() {
+      this.show = true;
+    },
+    login() {
+      if (!this.telphone) {
+        return;
+      }
+      sessionStorage.setItem('userInfo', JSON.stringify({
+        telphone: this.telphone,
+        wx: this.wx
+      }));
+      this.show = false;
+    }
+  },
+  components: {
+    'van-action-sheet': ActionSheet,
+    'van-field': Field,
+    'van-button': Button
+  }
 }
 </script>
 
@@ -21,5 +58,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   list-style: none;
+  overflow-y: auto;
 }
 </style>
