@@ -1,7 +1,7 @@
 var express = require('express');
 var { createPool } = require('./service/dbService');
 var { port } = require('./config/config');
-var { getPrizeId, getPrizeList, addPrizes, setPrizeSetting, getPrizeHistory, getPrizeHistoryCount,
+var { getPrizeId, getPrizeList, setPrizeSetting, getPrizeHistory, getPrizeHistoryCount,
     addPrizeSpecialSetting, deletePrizeSpecialSetting } = require('./service/tool');
 
 var app = express();
@@ -54,14 +54,6 @@ app.post('/setPrizeSetting', function(req, res, next) {
     const {params} = req.body;
     setPrizeSetting(pool, params, (_res) => {
         res.send({});
-    });
-});
-
-/** 添加奖品信息 */
-app.post('/addPrizes', function(req, res, next) {
-    const { label, description } = req.body;
-    addPrizes(pool, {label, description}, (_res) => {
-        res.send(_res);
     });
 });
 

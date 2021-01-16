@@ -190,23 +190,6 @@ function getPrizeList(_pool, _callBack) {
     });
 }
 
-/** 添加奖品 */
-function addPrizes(_pool, _params, _callBack) {
-    const sql = 'insert into prize(label,description) values ?';
-    const params = [[
-        Object.values(_params)
-    ]];
-
-    query(_pool, sql, params, (err, results) => {
-        if (!err) {
-            _callBack({retCode: '0'});
-        } else {
-            _callBack({retCode: '1', msg: err});
-        }
-        
-    });
-}
-
 /** 查询抽奖历史记录 */
 function getPrizeHistory(_pool, _params, _callBack) {
     const sql = `
@@ -216,6 +199,7 @@ function getPrizeHistory(_pool, _params, _callBack) {
         ON ph.prize_setting_id = ps.id
         left join prize as p
         on ps.prize_id = p.id
+        where p.label not like '%谢谢参与%'
     `;
     query(_pool, sql, null, (err, results) => {
         _callBack(results);
@@ -223,4 +207,4 @@ function getPrizeHistory(_pool, _params, _callBack) {
 }
 
 module.exports = { getUuid, getPrizeId, getPrizeList, getPrizeHistory, getPrizeHistoryCount,
-    addPrizes, setPrizeSetting, addPrizeSpecialSetting, deletePrizeSpecialSetting };
+    setPrizeSetting, addPrizeSpecialSetting, deletePrizeSpecialSetting };

@@ -91,6 +91,7 @@ export default {
 
 		getPrizeHistory().then((data) => {
 			this.prizeHistoryList = data.prizeHistoryList;
+			debugger;
 		});
 	},
 	mounted() {
