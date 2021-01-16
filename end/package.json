@@ -1,0 +1,16 @@
+{
+  "name": "lucky-draw-end",
+  "version": "1.0.0",
+  "license": "lucky-draw-end",
+  "scripts": {
+    "init": "supervisor ./test/test.js",
+    "start": "supervisor ./src/main.js"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "4.17.1",
+    "supervisor": "0.12.0",
+    "uuid": "8.3.2",
+    "mysql": "2.18.1"
+  }
+}
