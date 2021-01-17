@@ -4,8 +4,8 @@
     <div v-if="isLogined && isAdmin" class="right-btn">isAdmin</div>
     <router-view/>
     <van-action-sheet v-model="show" title="输入信息" class="asd">
-      <van-field v-model="telphone" required type="tel" placeholder="请输入用户名" />
-      <van-field v-model="wx" placeholder="请输入用户名" />
+      <van-field v-model="telphone" required type="tel" placeholder="请输入手机号" />
+      <van-field v-model="wx" placeholder="请输入微信号" />
       <van-button @click="login" type="info">确认</van-button>
     </van-action-sheet>
   </div>

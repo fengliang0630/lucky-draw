@@ -42,7 +42,7 @@ app.post('/deletePrizeSpecialSetting', function(req, res, next) {
 });
 
 /**  设置特定抽奖数据 */
-app.post('/addPrizeSpecialSetting', function(req, res, next) {
+app.get('/addPrizeSpecialSetting', function(req, res, next) {
     const {params} = req.body;
     addPrizeSpecialSetting(pool, params, (_res) => {
         res.send({});
@@ -50,7 +50,7 @@ app.post('/addPrizeSpecialSetting', function(req, res, next) {
 });
 
 /** 抽奖初始化设置 */
-app.post('/setPrizeSetting', function(req, res, next) {
+app.get('/setPrizeSetting', function(req, res, next) {
     const {params} = req.body;
     setPrizeSetting(pool, params, (_res) => {
         res.send({});
