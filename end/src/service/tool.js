@@ -159,14 +159,14 @@ function deletePrizeSpecialSetting(_pool, _params, _callBack) {
 /** 添加定制奖品数据 */
 function addPrizeSpecialSetting(_pool, _params1, _callBack) {
     const _params = [
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 1},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 2},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 3},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 4},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 5},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 6},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 7},
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 8}
+        {telephone: '18392758861', wx: '1111', prize_setting_id: 1},
+        {telephone: '18392758861', wx: '1111', prize_setting_id: 2},
+        {telephone: '18392758861', wx: '1111', prize_setting_id: 3},
+        {telephone: '18392758861', wx: '1111', prize_setting_id: 4},
+        {telephone: '18392758861', wx: '1111', prize_setting_id: 5},
+        {telephone: '18392758861', wx: '1111', prize_setting_id: 6},
+        {telephone: '18392758861', wx: '1111', prize_setting_id: 7},
+        {telephone: '18392758861', wx: '1111', prize_setting_id: 8}
     ];
     const sql = 'insert into prize_special_setting(telephone, wx, prize_setting_id, status, create_time) values ?';
     const params = [];

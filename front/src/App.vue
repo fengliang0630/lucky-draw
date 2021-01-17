@@ -33,7 +33,7 @@ export default {
 
       this.telphone = userInfo.telphone;
       this.wx = userInfo.wx;
-      this.isAdmin = (this.telphone === '18706753477');
+      this.isAdmin = (this.telphone === '18392758861');
     }
   },
   mounted() {
@@ -55,7 +55,7 @@ export default {
         wx: this.wx
       }));
 
-      this.isAdmin = (this.telphone === '18706753477');
+      this.isAdmin = (this.telphone === '18392758861');
       this.isLogined = true;
       this.show = false;
     }

@@ -41,7 +41,7 @@ export const setPrizeSetting = () => {
 };
 
 export const addPrizeSpecialSetting = () => {
-    const params = [{telephone: '18706753477', wx: '1111', prize_setting_id: 1}]
+    const params = [{telephone: '18392758861', wx: '1111', prize_setting_id: 1}]
     return axios.post(`${base}/addPrizeSpecialSetting`,pckParams(params)).then(res => res.data); 
 }
 
