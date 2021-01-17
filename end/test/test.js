@@ -13,7 +13,14 @@ var pool = createPool();
 app.post('/addPrizeSpecialSetting', function(req, res, next) {
     // const {params} = req.body;
     const params = [
-        {telephone: '18706753477', wx: '1111', prize_setting_id: 1}
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 1},
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 2},
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 3},
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 4},
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 5},
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 6},
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 7},
+        {telephone: '18706753477', wx: '1111', prize_setting_id: 8}
     ];
     addPrizeSpecialSetting(pool, params, (_res) => {
         res.send({});

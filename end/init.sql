@@ -8,4 +8,3 @@ INSERT INTO prize ( label, description, icon, subDesc ) VALUES ( '五等奖', '�
 INSERT INTO prize ( label, description, icon, subDesc ) VALUES ( '六等奖', '私人定制阿胶糕试吃装一份', 'redpack.png', '试吃一份' );
 
 
-
