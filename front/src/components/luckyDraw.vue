@@ -88,10 +88,8 @@ export default {
 		getPrizeList().then((data) => {
 			this.awards = data.prizeList;
 		});
-
 		getPrizeHistory().then((data) => {
 			this.prizeHistoryList = data.prizeHistoryList;
-			debugger;
 		});
 	},
 	mounted() {
