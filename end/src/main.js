@@ -1,7 +1,7 @@
 var express = require('express');
 var { createPool } = require('./service/dbService');
 var { port } = require('./config/config');
-var { getPrizeId, getPrizeList, setPrizeSetting, getPrizeHistory, getPrizeHistoryCount,
+var { getPrizeId, getPrizeList, setPrizeSetting, getPrizeHistory, getPrizeHistoryCount, payLuck,
     addPrizeSpecialSetting, deletePrizeSpecialSetting } = require('./service/tool');
 
 var app = express();
@@ -27,7 +27,8 @@ app.post('/getPrizeHistoryCount', function(req, res, next) {
 
 /** 获取中将历史记录 */
 app.post('/getPrizeHistory', function(req, res, next) {
-    getPrizeHistory(pool, {}, (prizeHistoryList) => {
+    const {params} = req.body;
+    getPrizeHistory(pool, params, (prizeHistoryList) => {
         res.send({ prizeHistoryList });
     });
 });
@@ -63,6 +64,16 @@ app.post('/getPrizeList', function(req, res, next) {
         res.send({prizeList: _prizeList});
     });
 });
+
+/** 兑奖 */
+app.post('/payLuck', function(req, res, next) {
+    const {params} = req.body;
+    payLuck(pool, params.id, (_prizeList) => {
+        res.send({prizeList: _prizeList});
+    });
+});
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);

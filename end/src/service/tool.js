@@ -203,8 +203,9 @@ function getPrizeList(_pool, _callBack) {
 
 /** 查询抽奖历史记录 */
 function getPrizeHistory(_pool, _params, _callBack) {
-    const sql = `
-        select ph.telephone, ph.wx, ps.prize_id, p.label, p.subDesc
+    let sql = `
+        select ph.id, ph.telephone, ph.wx, ph.random_id, ph.status, ps.prize_id, p.label, 
+        p.subDesc, p.description, p.icon
         from prize_history as ph
         LEFT JOIN prize_setting as ps 
         ON ph.prize_setting_id = ps.id
@@ -212,10 +213,38 @@ function getPrizeHistory(_pool, _params, _callBack) {
         on ps.prize_id = p.id
         where p.label not like '%谢谢参与%'
     `;
-    query(_pool, sql, null, (err, results) => {
+
+    let p = null;
+
+    if (!!_params && !!_params.telephone) {
+        sql += ' and ph.telephone = ? ';
+        p = [_params.telephone];
+    }
+
+    if (!!_params && !!_params.wx) {
+        sql += ' and ph.wx = ? ';
+        p = [_params.wx];
+    }
+
+    if (!!_params && !!_params.random_id) {
+        sql += ' and ph.random_id = ? ';
+        p = [_params.random_id];
+    }
+
+    query(_pool, sql, p, (err, results) => {
+        _callBack(results);
+    });
+}
+
+/** 兑奖 */
+function payLuck(_pool, _id, _callBack) {
+    const sql = `
+        UPDATE prize_history AS p SET p.status = ? WHERE p.id = ?
+    `;
+    query(_pool, sql, ['1', _id], (err, results) => {
         _callBack(results);
     });
 }
 
 module.exports = { getUuid, getPrizeId, getPrizeList, getPrizeHistory, getPrizeHistoryCount,
-    setPrizeSetting, addPrizeSpecialSetting, deletePrizeSpecialSetting };
+    setPrizeSetting, addPrizeSpecialSetting, deletePrizeSpecialSetting, payLuck };

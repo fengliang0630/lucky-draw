@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div @click="showlogin" :class="{'right-btn': true, 'hidden': isLogined}">登录</div>
-    <div v-if="isLogined && isAdmin" class="right-btn">isAdmin</div>
+    <div v-if="isLogined && isAdmin" class="nomal-btn" @click="goRoute('/history')">兑奖</div>
     <router-view/>
     <van-action-sheet v-model="show" title="输入信息" class="asd">
       <van-field v-model="telphone" required type="tel" placeholder="请输入手机号" />
@@ -25,10 +25,24 @@ export default {
       isAdmin: false
     }
   },
+  created() {
+    let userInfo = sessionStorage.getItem('userInfo');
+    if (!!userInfo) {
+      userInfo = JSON.parse(userInfo);
+      this.isLogined = true;
+
+      this.telphone = userInfo.telphone;
+      this.wx = userInfo.wx;
+      this.isAdmin = (this.telphone === '18706753477');
+    }
+  },
   mounted() {
     this.$bus.on('show.login.msg', this.showlogin)
   },
   methods: {
+    goRoute(_url) {
+      this.$router.push(_url);
+    },
     showlogin() {
       this.show = true;
     },
@@ -66,6 +80,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   list-style: none;
   overflow-y: auto;
+
+  .nomal-btn {
+    z-index: 100;
+    background: #9c9c9c;
+    font-size: 20px;
+    width: 80px;
+    position: absolute;
+    display: inline-block;
+    padding: 5px;
+    color: #fff;
+    text-align: center;
+  };
 
   .right-btn {
       z-index: 100;

@@ -15,8 +15,8 @@ export const getPrizeList = () => {
 };
 
 // 获取获奖历史记录
-export const getPrizeHistory = () => {
-    return axios.post(`${base}/getPrizeHistory`, null).then(res => res.data); 
+export const getPrizeHistory = (_params) => {
+    return axios.post(`${base}/getPrizeHistory`, pckParams(_params || {})).then(res => res.data); 
 };
 
 // 获取此人抽奖次数
@@ -28,6 +28,11 @@ export const getPrizeHistoryCount = (telephone) => {
 export const getPrizeId = (telephone, wx) => {
     return axios.post(`${base}/getPrizeId`, pckParams({ telephone, wx })).then(res => res.data); 
 };
+// 兑奖
+export const payLuck = (_id) => {
+    const params = {id: _id};
+    return axios.post(`${base}/payLuck`,pckParams(params)).then(res => res.data); 
+}
 
 /** 初始化设置奖品比例 */
 export const setPrizeSetting = () => {
@@ -39,4 +44,7 @@ export const addPrizeSpecialSetting = () => {
     const params = [{telephone: '18706753477', wx: '1111', prize_setting_id: 1}]
     return axios.post(`${base}/addPrizeSpecialSetting`,pckParams(params)).then(res => res.data); 
 }
+
+
+
 
