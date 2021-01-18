@@ -10,7 +10,7 @@ CREATE TABLE prize_history(
     primary key (id)
 ) COMMENT= '中奖历史记录表';
 
-CREATE TABLE prize(
+CREATE TABLE prize (
     id           INT          UNIQUE KEY AUTO_INCREMENT NOT NULL    COMMENT '标识',
     label        CHAR(10)     NOT NULL               COMMENT '奖品label',
     description  CHAR(200)    NOT NULL               COMMENT '奖品描述信息',
@@ -19,7 +19,7 @@ CREATE TABLE prize(
     PRIMARY KEY (id)
 ) COMMENT= '奖品';
 
-CREATE TABLE prize_setting(
+CREATE TABLE prize_setting (
     id             int          UNIQUE KEY AUTO_INCREMENT not null    comment '标识',
     status         char(5)    not null               comment '状态（0: 已抽中  1： 未抽中）',
     prize_id       int          not null               comment '奖品id',
